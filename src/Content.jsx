@@ -17,18 +17,29 @@ const Content = () => {
             id : 3,
             checked: false,
             item: "item 3"
+        },
+        {
+            id : 4,
+            checked: false,
+            item: "item 4"
+        },
+        {
+            id : 5,
+            checked: false,
+            item: "item 5"
         }
 
     ])
     
     const handelCheck = (id)=> {       
       
-       const listItems = items.map( (item)=> item.id === id ? { ...item , checked: !item.checked , des: "Danial"} : item  );
-    //    console.log(listItems)
+       const listItems = items.map( (item)=> item.id === id ? { ...item , checked: !item.checked , des: "Danial"} : item  ); 
        setItems(listItems);
-       console.log(items)
-    
+    }
 
+    const deleteHandler = (id) =>{
+        const listItems = items.filter( (item)=> item.id !== id   );       
+       setItems(listItems);
     }
 
   return (
@@ -43,7 +54,7 @@ const Content = () => {
                              checked={item.checked} 
                         />
                         <label htmlFor="item.id">{item.item}</label>
-                        <FaTrashAlt
+                        <FaTrashAlt onClick={() => deleteHandler(item.id)}
                             role='button' 
                             tabIndex={0} 
                          />
