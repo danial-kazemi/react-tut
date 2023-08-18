@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from './Header';
 import Content from './Content';
 import Footer from './Footer';
+import AddItem from './AddItem';
 
 function App() {
 
@@ -34,14 +35,21 @@ function App() {
 
 ]);
 
-const handelCheck = (id)=> {       
+const [newItem,setNewItem] = useState('');
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  console.log(e)
+}
+
+const handleCheck = (id)=> {       
       
   const listItems = items.map( (item)=> item.id === id ? { ...item , checked: !item.checked , des: "Danial"} : item  ); 
   setItems(listItems);
   localStorage.setItem('shoppinglist',JSON.stringify(listItems));
 }
 
-const HandelDelete = (id) =>{
+const handleDelete = (id) =>{
    const listItems = items.filter( (item)=> item.id !== id   );       
    setItems(listItems);
    localStorage.setItem('shoppinglist',JSON.stringify(listItems));
@@ -50,10 +58,15 @@ const HandelDelete = (id) =>{
   return (
     <div className="App">
       <Header title="Grocery List" />
+      <AddItem 
+        newItem = {newItem}
+        setNewItem = {setNewItem}
+        handleSubmit = {handleSubmit}
+      />
       <Content
          items={items}         
-         handelCheck={handelCheck}
-         handelDelete={HandelDelete}
+         handleCheck={handleCheck}
+         handleDelete={handleDelete}
       />
       <Footer length={items.length} />
     </div>

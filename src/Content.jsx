@@ -1,6 +1,6 @@
 import ItemList from "./ItemList";
 
-const Content = ({items, handelCheck, handelDelete}) => { 
+const Content = ({items, handleCheck, handleDelete}) => { 
 
   return (   
  
@@ -8,8 +8,8 @@ const Content = ({items, handelCheck, handelDelete}) => {
             { items.length ? (   
                 <ItemList
                     items={items}
-                    handelCheck={handelCheck}
-                    handelDelete={handelDelete}
+                    handleCheck = {handleCheck}
+                    handleDelete = {handleDelete}
                 />
             ) : (
                 <p style={{marginTop: '2rem', color: 'red'}}>The List is Empty</p>
